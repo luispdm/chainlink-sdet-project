@@ -15,21 +15,20 @@ type Config struct {
 
 var Conf *Config
 
-func LoadConfig() *Config {
+//LoadConfig parses config/config.yaml and the expected env vars.
+//and loads the values in config.Conf (*Config)
+func LoadConfig() {
 	if Conf != nil {
-		return Conf
+		return
 	}
 	Conf = &Config{}
 	loadFile()
 	loadEnv()
-	return Conf
 }
 
-/*
-** When more variables are added along the way, this method should be refactored.
-** Either use a third-party package like viper, envconfig etc. or store the
-** variable names in a slice and look for each of them in "os.Environ()".
-*/
+//When more variables are added along the way, this method should be refactored.
+//Either use a third-party package like viper, envconfig etc. or store the
+//variable names in a slice and look for each of them in "os.Environ()".
 func loadEnv() {
 	parallel := os.Getenv("PARALLEL")
 	wss := os.Getenv("WSS")

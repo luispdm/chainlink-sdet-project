@@ -48,7 +48,7 @@ The requirement of the WebSocket is valid for the container as well.
 The Solidity source code at `contracts/ethereum/v0.6.6/src/Contract.sol` comes from [this BTC/USD feed contract](https://etherscan.io/address/0xf570deefff684d964dc3e15e1f9414283e3f7419#code).
 The abi and bin files stored at `contracts/ethereum/v0.6.6` were generated with [solc 0.6.6](https://github.com/ethereum/solidity/releases/tag/v0.6.6). The go objects stored at `contracts/ethereum` were generated with [abigen](https://geth.ethereum.org/docs/dapp/native-bindings).
 
-There's a script called `abigenGo.sh` in the root folder: it generates the go modules from the abi and bin files.
+To generate the go objects, the script `abigenGo.sh` stored in the root folder has been used.
 
 The tests leverage [testify](https://github.com/stretchr/testify) for assertions. The same library is also used for `Setup` and `TearDown` of suites and tests.
 
@@ -63,6 +63,10 @@ I think having the number of rounds and threshold configurable per-test rather t
 There's a maximum number of rounds allowed stored in the constant `MAX_ROUNDS` at `main_test.go`.
 
 ## Observations
-- The maximum number of rounds could have been parameterized via config file or env var. The creator of this repo forgot to do so 😅.
 - There's no usage of goroutines or thread-safe constructs like `sync.Map` because, after a couple of benchmarks, it's been observed that the optimization brought by the concurrency was poor (and the overhead increased). I preferred the simplicity over the speed.
 - I have noticed that the BTC/USD feed and the LINK/USD feed used in this test have 15 nodes. However, while testing, only the data of 14 nodes is returned. I do not understand why.
+
+## Possible improvements
+- The maximum number of rounds could have been given via config file or env var. The creator of this repo forgot to do so 😅.
+- The table-driven test variables listed [here](##Choices) could be fed via config file too.
+- `loadEnv()` at `config/config.go` loads the env vars via `os.GetEnv("varName")`. This is ok when there's a few number parameters. With lots of parameters, this method should be refactored.
