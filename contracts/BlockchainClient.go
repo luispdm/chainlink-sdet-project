@@ -57,8 +57,8 @@ func (bC *BlockchainClient) FilterSubmissionReceived() (*FluxAggregatorSubmissio
 }
 
 //FetchLastRounds retrieves the last 'noOfRounds' aggregated medians from the blockchain. It stores the 
-//values in a private map of BlockchainClient. The maps keys are the round ids and the values
-// are the aggregated medians. The method returns an error if retrieving a single round fails.
+//values in a private map that belongs to BlockchainClient. The maps' keys are the round ids. The values
+//are the aggregated medians. The method returns an error if retrieving a single round fails.
 func (bC *BlockchainClient) FetchLastRounds(noOfRounds int) error {
 	lRData, err := bC.fAggr.LatestRoundData(&bind.CallOpts{})
 	if err != nil {
