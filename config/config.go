@@ -15,7 +15,7 @@ type Config struct {
 
 var Conf *Config
 
-//LoadConfig parses config/config.yaml and the expected env vars.
+//LoadConfig parses config/config.yaml and the expected env vars
 //and loads the values in config.Conf (*Config)
 func LoadConfig() {
 	if Conf != nil {
