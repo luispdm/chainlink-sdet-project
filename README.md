@@ -6,7 +6,7 @@ You also need a valid WebSocket address to make requests to the blockchain. You 
 
 ## Configuration
 As of 06/2020, the WebSocket address and the test parallelization are configurable.
-You must either create a file named `config.yml` under the `config` directory or pass-in the environment variables.
+You must create a file named `config.yml` under the `config` directory or pass-in the corresponding environment variables.
 
 Config file example:
 ```yaml
