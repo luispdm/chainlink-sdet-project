@@ -4,6 +4,8 @@
 To run the tests, you must have [go](https://golang.org/) or [Docker](https://www.docker.com/) installed.
 You also need a valid WebSocket address to make requests to the blockchain. You can leverage services like [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/).
 
+The program has not been tested with Infura, only with Alchemy.
+
 ## Configuration
 As of 06/2020, the WebSocket address and the test parallelization are configurable.
 You must create a file named `config.yml` under the `config` directory or pass-in the corresponding environment variables.
@@ -66,7 +68,8 @@ There's a maximum number of rounds allowed stored in the constant `MAX_ROUNDS` a
 - There's no usage of goroutines or thread-safe constructs like `sync.Map` because, after a couple of benchmarks, it's been observed that the optimization brought by the concurrency was poor (and the overhead increased). I preferred the simplicity over the speed.
 - I have noticed that the BTC/USD feed and the LINK/USD feed used in this test have 15 nodes. However, while testing, only the data of 14 nodes is returned. I do not understand why.
 
-## Possible improvements
+## Potential improvements
 - The maximum number of rounds could have been given via config file or env var. The creator of this repo forgot to do so 😅.
 - The table-driven test variables listed [here](##Choices) could be fed via config file too.
 - `loadEnv()` at `config/config.go` loads the env vars via `os.GetEnv("varName")`. This is ok when there's a few number parameters. With lots of parameters, this method should be refactored.
+- Because this project does not represent a production app (no need to perform a huge amount of requests), rate limit has not been handled. When rate limit is hit, the test just prints the error out and stops its execution. As a potential improvement, an exponential back-off and retry mechanism could be put in place, like the one suggested [here](https://docs.alchemy.com/alchemy/guides/rate-limits#option-4-exponential-backoff)
