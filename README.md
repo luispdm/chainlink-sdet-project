@@ -70,6 +70,6 @@ There's a maximum number of rounds allowed stored in the constant `MAX_ROUNDS` a
 
 ## Potential improvements
 - The maximum number of rounds could have been given via config file or env var. The creator of this repo forgot to do so 😅.
-- The table-driven test variables listed [here](##Choices) could be fed via config file too.
-- `loadEnv()` at `config/config.go` loads the env vars via `os.GetEnv("varName")`. This is ok when there's a few number parameters. With lots of parameters, this method should be refactored.
+- The table-driven test variables listed [here](#choices) could be fed via config file too.
+- `loadEnv()` at `config/config.go` loads the env vars via `os.GetEnv("varName")`. This is ok when there's a few number of parameters. With lots of parameters, this method should be refactored.
 - Because this project does not represent a production app (no need to perform a huge amount of requests), rate limit has not been handled. When rate limit is hit, the test just prints the error out and stops its execution. As a potential improvement, an exponential back-off and retry mechanism could be put in place, like the one suggested [here](https://docs.alchemy.com/alchemy/guides/rate-limits#option-4-exponential-backoff)
