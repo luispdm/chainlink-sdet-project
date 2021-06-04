@@ -45,7 +45,7 @@ func loadEnv() {
 func loadFile() {
 	f, err := os.Open("config/config.yml")
 	if err != nil {
-		log.Printf("Error loading config file, looking for env vars...\n\n")
+		log.Printf("Error loading config file: '%s' Looking for env vars...\n\n", err.Error())
 		return
 	}
 	defer f.Close()

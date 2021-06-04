@@ -63,7 +63,7 @@ func (suite *ChainlinkTestSuite) TestAnswerDeviation() {
 			if Conf.Parallel {
 				suite.T().Parallel()
 			}
-			suite.Require().Lessf(test.NoOfRounds, MAX_ROUNDS,
+			suite.Require().LessOrEqual(test.NoOfRounds, MAX_ROUNDS,
 				fmt.Sprintf("Test '%s': number of rounds exceeded. '%d' allowed, got '%d'",
 					test.Name, MAX_ROUNDS, test.NoOfRounds))
 
@@ -82,7 +82,8 @@ func (suite *ChainlinkTestSuite) TestAnswerDeviation() {
 				}
 				oraclePrice := bClient.GetPrice(iter.Event.Submission)
 				answerDev := bClient.GetAnswerDev(oraclePrice, iter.Event.Round)
-				errMessage := fmt.Sprintf("Test '%s': answer deviation of oracle '%v' at round '%v' should be less than or equal to '%v%%', got '%v%%'",
+				errMessage := fmt.Sprintf("Test '%s': answer deviation of oracle '%v' at round '%v' should be "+
+					"less than or equal to '%v%%', got '%v%%'",
 					test.Name, iter.Event.Oracle, iter.Event.Round, test.Threshold, answerDev)
 
 				suite.Assert().LessOrEqual(answerDev, test.Threshold, errMessage)
