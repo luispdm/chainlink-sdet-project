@@ -80,7 +80,7 @@ There's a maximum number of rounds allowed stored in the constant `MAX_ROUNDS` a
 
 ## Observations
 - There's no usage of goroutines or thread-safe constructs like `sync.Map` because, after a couple of benchmarks, it's been observed that the optimization brought by the concurrency was poor (and the overhead increased). I preferred the simplicity over the speed.
-- I have noticed that the BTC/USD feed and the LINK/USD feed used in this test have 15 nodes. However, while testing, only the data of 14 nodes is returned. I do not understand why.
+- BTC/USD feed and the LINK/USD feed used in this test have 15 nodes. However, while testing, only the data of 14 nodes is returned. I do not understand why.
 
 ## Potential improvements
 - The maximum number of rounds could have been given via config file or env var. The creator of this repo forgot to do so 😅.
