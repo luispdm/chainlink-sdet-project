@@ -46,11 +46,25 @@ PARALLEL=true make run # Same as "make run" but with env vars
 
 The requirement of the WebSocket is valid for the container as well.
 
+## Main files
+`config/config.go` parses the config file and the environment variables.
+
+`contracts/BlockchainClient.go` handles the interaction with the blockchain. It:
+- establishes the connection with the blockchain
+- retrieves the number of decimals of the feed
+- fetches the last "N" rounds
+- filters the events of type "SubmissionReceived" (i.e. the individual oracle prices) of the last "N" rounds
+- calculates the price (i.e. division by number of decimals) and the answer deviation
+
+`main_test.go` contains the tests.
+
 ## Choices
 The Solidity source code at `contracts/ethereum/v0.6.6/src/Contract.sol` comes from [this BTC/USD feed contract](https://etherscan.io/address/0xf570deefff684d964dc3e15e1f9414283e3f7419#code).
 The abi and bin files stored at `contracts/ethereum/v0.6.6` were generated with [solc 0.6.6](https://github.com/ethereum/solidity/releases/tag/v0.6.6). The go objects stored at `contracts/ethereum` were generated with [abigen](https://geth.ethereum.org/docs/dapp/native-bindings).
 
 If you want to generate the go objects yourself, you can use the script `abigenGo.sh` stored in the root folder.
+
+The library [go-ethereum](https://github.com/ethereum/go-ethereum/) enables the interaction with the blockchain.
 
 The tests leverage [testify](https://github.com/stretchr/testify) for assertions. The same library is also used for `Setup` and `TearDown` of suites and tests.
 
