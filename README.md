@@ -62,7 +62,7 @@ The requirement of the WebSocket is valid for the container as well.
 The Solidity source code at `contracts/ethereum/v0.6.6/src/Contract.sol` comes from [this BTC/USD feed contract](https://etherscan.io/address/0xf570deefff684d964dc3e15e1f9414283e3f7419#code).
 The abi and bin files stored at `contracts/ethereum/v0.6.6` were generated with [solc 0.6.6](https://github.com/ethereum/solidity/releases/tag/v0.6.6). The go objects stored at `contracts/ethereum` were generated with [abigen](https://geth.ethereum.org/docs/dapp/native-bindings).
 
-If you want to generate the go objects yourself, you can use the script `abigenGo.sh` stored in the root folder.
+If you want to generate the go objects yourself, you can use the script `abigenGo.sh` stored in the root folder. You must have both solc and abigen installed. The script has been tested on Debian 10 only.
 
 The library [go-ethereum](https://github.com/ethereum/go-ethereum/) enables the interaction with the blockchain.
 
