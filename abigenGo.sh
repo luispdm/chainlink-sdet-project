@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the filenames without the extension
-VER="v0.6.6/"
+VER="v0.6.6"
 names=()
 cd ./contracts/ethereum/$VER/abi
 for FILE in *; do
