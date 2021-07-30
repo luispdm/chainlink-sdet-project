@@ -7,7 +7,7 @@ You also need a valid WebSocket address to make requests to the blockchain. You 
 The program has not been tested with Infura, only with Alchemy.
 
 ## Configuration
-As of 06/2020, the WebSocket address and the test parallelization are configurable.
+As of 06/2021, the WebSocket address and the test parallelization are configurable.
 You must create a file named `config.yml` under the `config` directory or pass-in the corresponding environment variables.
 
 Config file example:
