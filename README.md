@@ -1,6 +1,26 @@
 # Chainlink SDET Project
 
-## Requirements
+## Problem description
+<details open>
+<summary>Expand</summary>
+Create a test script that analyses previous Chainlink feed rounds and tests answer deviation.
+
+### Requirements
+- The BTC/USD feed is tested:
+https://etherscan.io/address/0xf570deefff684d964dc3e15e1f9414283e3f7419
+- At least 5 previous rounds are fetched and tested
+- Each individual answer from each oracle is compared against the aggregated median
+- The test will calculate the percentile difference between each individual answer and the
+aggregated median, passing the test if all answers are within 10% of the median
+- The test must be ran and written within a common testing harness in the respective
+language
+
+### Stretch requirements
+- Test is data-driven, with each scenario allowing the feed ETH address and deviation
+threshold to be configured.
+</details>
+
+## Pre-conditions
 To run the tests, you must have [go](https://golang.org/) or [Docker](https://www.docker.com/) installed.
 You also need a valid WebSocket address to make requests to the blockchain. You can leverage services like [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/).
 
