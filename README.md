@@ -1,7 +1,7 @@
 # Chainlink SDET Project
 
 ## Problem description
-<details open>
+<details closed>
 <summary>Expand</summary>
 Create a test script that analyses previous Chainlink feed rounds and tests answer deviation.
 
